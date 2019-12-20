@@ -58,9 +58,25 @@ public class Country {
      * имеет неверный формат.
      */
     public static Country valueOf(String text) throws ParseException {
-        /*
-         * TODO(Студент): Реализовать метод valueOf класса Country
-         */
-        throw new UnsupportedOperationException("Not implemented yet!");
+        String[] codeNAme = text.split(":");
+        Country country = new Country(codeNAme[0], codeNAme[1]);
+        return country;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Country) {
+            Country country = (Country) obj;
+            if (this.code == country.code && this.name == country.name) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        char[] ch = this.code.toCharArray();
+        return (int) ch[0] + ch[1];
     }
 }
